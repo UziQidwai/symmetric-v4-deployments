@@ -1,0 +1,8 @@
+@balancer-labs/v3-interfaces/=contracts/symmetric-v4/pkg/interfaces/
+@balancer-labs/v3-vault/=contracts/symmetric-v4/pkg/vault/
+@balancer-labs/v3-pool-weighted/=contracts/symmetric-v4/pkg/pool-weighted/
+@balancer-labs/v3-pool-stable/=contracts/symmetric-v4/pkg/pool-stable/
+@balancer-labs/v3-solidity-utils/=contracts/symmetric-v4/pkg/solidity-utils/
+@balancer-labs/v3-pool-utils/=contracts/symmetric-v4/pkg/pool-utils/
+@balancer-labs/v3-pool-hooks/=contracts/symmetric-v4/pkg/pool-hooks/
+@openzeppelin/contracts/=node_modules/@openzeppelin/contracts/

@@ -1,0 +1,3 @@
+[submodule "contracts/symmetric-v4"]
+	path = contracts/symmetric-v4
+	url = https://github.com/centfinance/symmetric-v4-monorepo.git
