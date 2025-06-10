@@ -1,0 +1,16 @@
+node_modules/
+.env
+.env.local
+.env.production
+cache/
+artifacts/
+typechain-types/
+coverage/
+coverage.json
+.nyc_output/
+dist/
+build/
+*.log
+.DS_Store
+deployments/*.json
+!deployments/.gitkeep
