@@ -8,7 +8,8 @@ async function deployCompleteSymmetricV4(networkName = 'moksha') {
   const [deployer] = await ethers.getSigners();
   const deploymentManager = new DeploymentManager(networkName);
   const networkConfig = await loadNetworkConfig(networkName);
-  
+  const ROUTER_VERSION = "1.0.0";
+
   console.log(`Deployer: ${deployer.address}`);
   console.log(`Balance: ${ethers.formatEther(await ethers.provider.getBalance(deployer.address))} ETH`);
   
@@ -33,7 +34,7 @@ async function deployCompleteSymmetricV4(networkName = 'moksha') {
     // Calculate what the Vault address will be (it will be deployed at nonce + 1)
     const futureVaultAddress = ethers.getCreateAddress({
       from: deployer.address,
-      nonce: nonce + 1  // Vault will be deployed second
+      nonce: nonce + 3  // Vault will be deployed second
     });
     
     console.log(`Calculated future Vault address: ${futureVaultAddress}`);
@@ -103,13 +104,13 @@ async function deployCompleteSymmetricV4(networkName = 'moksha') {
     
     const router = await deployContract(
       "Router",
-      [await vault.getAddress(), wethAddress, permit2Address],
+      [await vault.getAddress(), wethAddress, permit2Address, ROUTER_VERSION],
       deploymentManager
     );
     
     const batchRouter = await deployContract(
       "BatchRouter", 
-      [await vault.getAddress(), wethAddress, permit2Address],
+      [await vault.getAddress(), wethAddress, permit2Address, ROUTER_VERSION],
       deploymentManager
     );
     

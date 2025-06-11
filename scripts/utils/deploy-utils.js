@@ -63,21 +63,30 @@ class DeploymentManager {
 
 async function deployContract(contractName, constructorArgs = [], deploymentManager = null) {
   console.log(`\n📄 Deploying ${contractName}...`);
-  
+
   const ContractFactory = await ethers.getContractFactory(contractName);
-  const contract = await ContractFactory.deploy(...constructorArgs);
-  
-  await contract.waitForDeployment();
+  let contract;
+
+  try {
+    contract = await ContractFactory.deploy(...constructorArgs);
+    await contract.waitForDeployment();
+  } catch (err) {
+    console.error(`🚨 ${contractName} deployment reverted:`,
+      err.error?.data || err.error?.message || err.message
+    );
+    throw err;
+  }
+
   const address = await contract.getAddress();
   const txHash = contract.deploymentTransaction().hash;
-  
+
   if (deploymentManager) {
     deploymentManager.addContract(contractName, address, constructorArgs, txHash);
   }
-  
+
   console.log(`   Address: ${address}`);
   console.log(`   TX Hash: ${txHash}`);
-  
+
   return contract;
 }
 
