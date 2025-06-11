@@ -26,7 +26,15 @@ class DeploymentManager {
     }
     
     this.deployments.timestamp = new Date().toISOString();
-    fs.writeFileSync(this.deploymentPath, JSON.stringify(this.deployments, null, 2));
+    fs.writeFileSync(
+      this.deploymentPath,
+      JSON.stringify(
+        this.deployments,
+        (key, value) =>
+          typeof value === 'bigint' ? value.toString() : value,
+        2
+      )
+    );
   }
 
   addContract(name, address, constructorArgs = [], txHash = null) {
