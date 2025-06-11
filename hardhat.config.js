@@ -2,9 +2,6 @@ require("@nomicfoundation/hardhat-toolbox");
 require("@nomicfoundation/hardhat-verify");
 require("dotenv").config();
 
-// Import tasks (will create this later)
-// require("./tasks/deploy");
-
 /** @type import('hardhat/config').HardhatUserConfig */
 module.exports = {
   solidity: {
@@ -14,16 +11,19 @@ module.exports = {
         enabled: true,
         runs: 9999,
       },
+      evmVersion: "cancun",
     },
   },
   paths: {
-    sources: "./contracts",
+    // Use our core contracts directory, NOT the entire symmetric-v4/pkg
+    sources: "./contracts/core",
     tests: "./test",
     cache: "./cache",
     artifacts: "./artifacts"
   },
   networks: {
     hardhat: {
+      hardfork: "cancun",
       forking: process.env.MAINNET_RPC_URL ? {
         url: process.env.MAINNET_RPC_URL,
       } : undefined,
