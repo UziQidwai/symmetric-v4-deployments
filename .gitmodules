@@ -1,3 +1,12 @@
 [submodule "contracts/symmetric-v4"]
 	path = contracts/symmetric-v4
 	url = https://github.com/centfinance/symmetric-v4-monorepo.git
+[submodule "contracts/stable-v2"]
+	path = contracts/stable-v2
+	url = https://github.com/centfinance/symmetric-v3-monorepo
+[submodule "contracts/quantamm"]
+	path = contracts/quantamm
+	url = https://github.com/centfinance/2024-12-quantamm
+[submodule "contracts/reclamm"]
+	path = contracts/reclamm
+	url = https://github.com/centfinance/reclamm
