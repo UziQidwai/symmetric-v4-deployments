@@ -29,14 +29,7 @@ Setup symbolic links to allow us to use the Balancer package but mapping back to
 Build the contract assets.
 
 ```
-npx hardhat clean
-npm run compile
-```
-
-Deploy to Moksha
-
-```
-npm run deploy:moksha
+npx hardhat run scripts/deploy-all-enhanced.js --network moksha
 ```
 
 ## Verify deployed contracts
