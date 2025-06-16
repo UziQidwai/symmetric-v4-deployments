@@ -26,6 +26,12 @@ Setup symbolic links to allow us to use the Balancer package but mapping back to
 ./setup-symlinks.sh
 ```
 
+Copy additional contracts.
+
+```
+setup-subgraph-contracts-complete.sh
+```
+
 Build the contract assets.
 
 ```
