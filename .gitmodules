@@ -10,6 +10,3 @@
 [submodule "contracts/reclamm"]
 	path = contracts/reclamm
 	url = https://github.com/centfinance/reclamm
-[submodule "contracts/symmetric-v3-monorepo"]
-	path = contracts/symmetric-v3-monorepo
-	url = https://github.com/centfinance/symmetric-v3-monorepo.git
