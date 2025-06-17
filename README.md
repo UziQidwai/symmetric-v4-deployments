@@ -33,12 +33,6 @@ HARDHAT_NETWORK=moksha
 ./setup-subgraph-contracts-complete.sh moksha
 ```
 
-Build the contract assets.
-
-```
-npx hardhat run scripts/deploy-all-enhanced.js --network moksha
-```
-
 ## Verify deployed contracts
 
 Verify deployed contracts using the verify-all.js script.
