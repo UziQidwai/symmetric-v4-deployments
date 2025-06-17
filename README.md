@@ -29,7 +29,8 @@ Setup symbolic links to allow us to use the Balancer package but mapping back to
 Copy additional contracts.
 
 ```
-setup-subgraph-contracts-complete.sh
+HARDHAT_NETWORK=moksha
+./setup-subgraph-contracts-complete.sh moksha
 ```
 
 Build the contract assets.
