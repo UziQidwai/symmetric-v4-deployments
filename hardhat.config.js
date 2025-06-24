@@ -35,6 +35,11 @@ module.exports = {
       chainId: 14800,
       gasPrice: "auto",
     },
+    vana: {
+      url: process.env.VANA_RPC_URL || `https://rpc.vana.org`,
+      accounts: process.env.PRIVATE_KEY ? [process.env.PRIVATE_KEY] : [],
+      chainId: 1480,
+    },
     sepolia: {
       url: process.env.SEPOLIA_RPC_URL || `https://sepolia.infura.io/v3/${process.env.INFURA_PROJECT_ID}`,
       accounts: process.env.PRIVATE_KEY ? [process.env.PRIVATE_KEY] : [],
@@ -45,12 +50,26 @@ module.exports = {
       accounts: process.env.PRIVATE_KEY ? [process.env.PRIVATE_KEY] : [],
       chainId: 1,
     },
+    swellchain: {
+      url: process.env.SWELLCHAIN_RPC_URL || `https://swell-mainnet.alt.technology`,
+      accounts: process.env.PRIVATE_KEY ? [process.env.PRIVATE_KEY] : [],
+      chainId: 1923,
+    },
+    swellchain_testnet: {
+      url: process.env.SWELLCHAIN_TESTNET_RPC_URL || `https://swell-testnet.alt.technology`,
+      accounts: process.env.PRIVATE_KEY ? [process.env.PRIVATE_KEY] : [],
+      chainId: 1924,
+    },
   },
   etherscan: {
     apiKey: {
       moksha: process.env.MOKSHA_ETHERSCAN_API_KEY || "dummy",
+      vana: process.env.ETHERSCAN_API_KEY || "dummy",
       sepolia: process.env.ETHERSCAN_API_KEY,
       mainnet: process.env.ETHERSCAN_API_KEY,
+      
+      swellchain: process.env.SWELLCHAIN_ETHERSCAN_API_KEY || "dummy",
+      swellchain_testnet: process.env.SWELLCHAIN_TESTNET_ETHERSCAN_API_KEY || "dummy",
     },
     customChains: [
       {
@@ -59,6 +78,30 @@ module.exports = {
         urls: {
           apiURL: "https://moksha.vanascan.io/api",
           browserURL: "https://moksha.vanascan.io"
+        }
+      },
+      {
+        network: "vana",
+        chainId: 1480,
+        urls: {
+          apiURL: "https://rpc.vana.org",
+          browserURL: "https://vanascan.io"
+        }
+      },
+      {
+        network: "swellchain",
+        chainId: 1923,
+        urls: {
+          apiURL: "https://swell-mainnet.alt.technology",
+          browserURL: "https://swellchainscan.io"
+        }
+      },
+      {
+        network: "swellchain_testnet",
+        chainId: 1924,
+        urls: {
+          apiURL: "https://swell-testnet.alt.technology",
+          browserURL: "https://swell-testnet-explorer.alt.technology"
         }
       }
     ]

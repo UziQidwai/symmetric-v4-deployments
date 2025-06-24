@@ -1,0 +1,29 @@
+{
+  "name": "Ethereum Sepolia",
+  "chainId": 11155111,
+  "rpc": "https://ethereum-sepolia-rpc.publicnode.com",
+  "explorer": "https://sepolia.etherscan.io",
+  "deployments": {
+    "vault": {
+      "pauseWindowDuration": 7776000,
+      "bufferPeriodDuration": 2592000
+    },
+    "protocolFeeController": {
+      "maxYieldValue": "50000000000000000",
+      "maxAumValue": "50000000000000000"
+    },
+    "pools": {
+      "weightedPoolFactory": {
+        "pauseWindowDuration": 7776000
+      },
+      "stablePoolFactory": {
+        "pauseWindowDuration": 7776000
+      }
+    }
+  },
+  "tokens": {
+    "WETH": "0x0000000000000000000000000000000000000000",
+    "DAI": "0x0000000000000000000000000000000000000000",
+    "USDC": "0x0000000000000000000000000000000000000000"
+  }
+}
