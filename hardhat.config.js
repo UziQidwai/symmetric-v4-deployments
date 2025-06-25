@@ -92,7 +92,8 @@ module.exports = {
         network: "swellchain",
         chainId: 1923,
         urls: {
-          apiURL: "https://swell-mainnet.alt.technology",
+          // SwellChain uses Etherscan-compatible API at swellchainscan.io
+          apiURL: "https://swellchainscan.io/api",
           browserURL: "https://swellchainscan.io"
         }
       },
@@ -100,8 +101,9 @@ module.exports = {
         network: "swellchain_testnet",
         chainId: 1924,
         urls: {
-          apiURL: "https://swell-testnet.alt.technology",
-          browserURL: "https://swell-testnet-explorer.alt.technology"
+          // SwellChain testnet also uses Etherscan-compatible API
+          apiURL: "https://sepolia.swellchainscan.io/api",
+          browserURL: "https://sepolia.swellchainscan.io"
         }
       }
     ]
