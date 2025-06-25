@@ -121,7 +121,7 @@ async function deployCompleteSubgraphSetup(networkName = 'moksha') {
       }
     }
     
-    // Duplicate StablePoolFactory
+    // Duplicate StablePoolFactory for testing
     const stablePoolV2Factory = await deployContract("StablePoolFactory", [
       await vault.getAddress(),
       networkConfig.deployments.pools.stablePoolFactory.pauseWindowDuration,

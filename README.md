@@ -30,7 +30,7 @@ Copy additional contracts.
 
 ```
 HARDHAT_NETWORK=moksha
-./setup-subgraph-contracts-complete.sh moksha
+./setup-subgraph-contracts.sh moksha
 ```
 
 ## Verify deployed contracts

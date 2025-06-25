@@ -26,8 +26,15 @@ echo "========================================"
 # Complete cleanup
 echo "🧹 Cleaning environment..."
 rm -rf contracts/core/additional/ 2>/dev/null || true
-rm -f scripts/deploy-*enhanced*.js scripts/deploy-*reclamm*.js scripts/deploy-*safe*.js scripts/deploy-*subgraph*.js scripts/deploy-*fixed*.js 2>/dev/null || true
+rm -f scripts/deploy-*enhanced*.js scripts/deploy-*reclamm*.js scripts/deploy-*safe*.js scripts/deploy-*subgraph*.js scripts/deploy-*fixed*.js scripts/deploy-complete.js 2>/dev/null || true
 rm -f hardhat.config.js.backup* contracts/core/PoolFactories.sol.backup* scripts/deploy-all.js.backup* 2>/dev/null || true
+
+# Backup and clean PoolFactories.sol temporarily
+if [ -f "contracts/core/PoolFactories.sol" ]; then
+    cp contracts/core/PoolFactories.sol contracts/core/PoolFactories.sol.backup
+    rm contracts/core/PoolFactories.sol
+fi
+
 npx hardhat clean > /dev/null 2>&1 || true
 rm -rf artifacts/ cache/ 2>/dev/null || true
 rm -f /tmp/*compile* /tmp/*test* 2>/dev/null || true
@@ -57,7 +64,26 @@ if [ ! -f "contracts/reclamm/contracts/ReClammPoolFactory.sol" ]; then
     fi
 fi
 
-# Test clean base compilation
+# Create minimal PoolFactories.sol for initial test
+echo "📝 Creating minimal PoolFactories.sol for initial test..."
+cat > contracts/core/PoolFactories.sol << 'EOF'
+// SPDX-License-Identifier: GPL-3.0-or-later
+pragma solidity ^0.8.24;
+
+// Import original pool factories only
+import "@balancer-labs/v3-pool-weighted/contracts/WeightedPoolFactory.sol";
+import "@balancer-labs/v3-pool-stable/contracts/StablePoolFactory.sol";
+
+/**
+ * @title PoolFactories
+ * @notice Minimal imports for initial compilation test
+ */
+contract PoolFactories {
+    // Empty contract - just for compilation of core imports
+}
+EOF
+
+# Test clean base compilation with minimal setup
 echo "🧪 Testing clean base compilation..."
 HARDHAT_NETWORK=$NETWORK npm run compile > /tmp/base_test 2>&1
 if [ $? -ne 0 ]; then
@@ -152,7 +178,7 @@ done
 
 echo "✅ Additional factory contracts created"
 
-# Step 4: Create comprehensive PoolFactories.sol
+# Step 4: Create comprehensive PoolFactories.sol with all imports
 echo ""
 echo "4️⃣  Creating Comprehensive PoolFactories.sol"
 echo "============================================="
@@ -343,7 +369,7 @@ async function deployCompleteSubgraphSetup(networkName = 'moksha') {
       }
     }
     
-    // Duplicate StablePoolFactory
+    // Duplicate StablePoolFactory for testing
     const stablePoolV2Factory = await deployContract("StablePoolFactory", [
       await vault.getAddress(),
       networkConfig.deployments.pools.stablePoolFactory.pauseWindowDuration,
